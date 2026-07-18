@@ -1,0 +1,140 @@
+:host {
+  all: initial;
+}
+
+.eam-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2147483647;
+  width: min(420px, 100vw);
+  height: 100vh;
+  box-sizing: border-box;
+  background: #f8fafc;
+  color: #172033;
+  border-left: 1px solid #cbd5e1;
+  box-shadow: -8px 0 24px rgba(15, 23, 42, 0.16);
+  font: 13px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow: auto;
+}
+
+.eam-header {
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  border-bottom: 1px solid #d8dee8;
+  padding: 14px;
+}
+
+.eam-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.eam-title {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.eam-site {
+  margin-top: 3px;
+  color: #526071;
+  font-size: 12px;
+}
+
+.eam-counts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.eam-count {
+  border: 1px solid #d8dee8;
+  border-radius: 6px;
+  padding: 7px 6px;
+  background: #f8fafc;
+}
+
+.eam-count strong {
+  display: block;
+  font-size: 15px;
+}
+
+.eam-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.eam-button {
+  appearance: none;
+  border: 1px solid #9aa8bb;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #172033;
+  cursor: pointer;
+  font: inherit;
+  padding: 7px 10px;
+}
+
+.eam-button:hover {
+  background: #eef2f7;
+}
+
+.eam-close {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+.eam-section {
+  padding: 12px 14px;
+  border-bottom: 1px solid #d8dee8;
+}
+
+.eam-section h3 {
+  margin: 0 0 8px;
+  font-size: 13px;
+}
+
+.eam-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.eam-item {
+  border: 1px solid #d8dee8;
+  border-radius: 6px;
+  background: #ffffff;
+  padding: 8px;
+}
+
+.eam-label {
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.eam-meta {
+  color: #526071;
+  margin-top: 3px;
+  overflow-wrap: anywhere;
+}
+
+.eam-value {
+  margin-top: 4px;
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.eam-empty {
+  color: #526071;
+}

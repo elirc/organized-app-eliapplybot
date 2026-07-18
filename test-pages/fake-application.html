@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fake Job Application</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #f3f6fa;
+        color: #172033;
+        font: 14px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      main {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 28px 18px 60px;
+      }
+
+      h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+      }
+
+      form {
+        display: grid;
+        gap: 18px;
+      }
+
+      section,
+      fieldset {
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        background: #ffffff;
+        padding: 16px;
+      }
+
+      fieldset {
+        display: grid;
+        gap: 8px;
+      }
+
+      h2,
+      legend {
+        margin: 0 0 10px;
+        font-size: 17px;
+        font-weight: 700;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      label {
+        display: grid;
+        gap: 5px;
+        font-weight: 600;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        min-height: 36px;
+        border: 1px solid #9aa8bb;
+        border-radius: 6px;
+        padding: 7px 9px;
+        font: inherit;
+      }
+
+      textarea {
+        min-height: 96px;
+      }
+
+      .choice {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+      }
+
+      .choice input {
+        width: auto;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      button {
+        min-height: 38px;
+        border: 1px solid #9aa8bb;
+        border-radius: 6px;
+        background: #ffffff;
+        padding: 8px 14px;
+        font: inherit;
+      }
+
+      @media (max-width: 680px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Fake Product Engineer Application</h1>
+      <p>This local page exercises v1 detection, mapping, skipping, and rollback behavior.</p>
+
+      <form>
+        <section>
+          <h2>Contact information</h2>
+          <div class="grid">
+            <label>First name <input required name="first_name" autocomplete="given-name" /></label>
+            <label>Last name <input required name="last_name" autocomplete="family-name" /></label>
+            <label>Email address <input required type="email" name="email" /></label>
+            <label>Phone <input required type="tel" name="phone" /></label>
+            <label>Location <input name="location" placeholder="City, State" /></label>
+            <label>LinkedIn profile <input name="linkedin_url" /></label>
+            <label>GitHub URL <input name="github" /></label>
+            <label>Portfolio website <input name="portfolio" /></label>
+          </div>
+        </section>
+
+        <section>
+          <h2>Work authorization</h2>
+          <div class="grid">
+            <label>
+              Are you legally authorized to work in the United States?
+              <select required name="authorized_us">
+                <option value="">Select one</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </label>
+            <label>
+              Will you now or in the future require sponsorship?
+              <select required name="requires_sponsorship">
+                <option value="">Select one</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section>
+          <h2>Experience</h2>
+          <div class="grid">
+            <label>Employer company <input name="experience_company" /></label>
+            <label>Position title <input name="experience_title" /></label>
+            <label>Work location <input name="experience_location" /></label>
+            <label>Experience start date <input name="experience_start_date" placeholder="MM/YYYY" /></label>
+            <label>Experience end date <input name="experience_end_date" placeholder="MM/YYYY or Present" /></label>
+            <label>Years of React experience <input name="react_years" type="number" min="0" /></label>
+          </div>
+        </section>
+
+        <section>
+          <h2>Education</h2>
+          <div class="grid">
+            <label>School or university <input name="education_school" /></label>
+            <label>Degree <input name="education_degree" /></label>
+            <label>Field of study <input name="education_major" /></label>
+            <label>Education start date <input name="education_start_date" placeholder="MM/YYYY" /></label>
+            <label>Graduation date <input name="education_end_date" placeholder="MM/YYYY" /></label>
+          </div>
+        </section>
+
+        <section>
+          <h2>Equal employment opportunity</h2>
+          <div class="grid">
+            <label>
+              Gender
+              <select name="eeo_gender">
+                <option value="">Select one</option>
+                <option>Man</option>
+                <option>Woman</option>
+                <option>Non-binary</option>
+                <option>I don't wish to answer</option>
+              </select>
+            </label>
+            <label>
+              Race/Ethnicity
+              <select name="eeo_race">
+                <option value="">Select one</option>
+                <option>Asian</option>
+                <option>Black or African American</option>
+                <option>Hispanic or Latino</option>
+                <option>White</option>
+                <option>I don't wish to answer</option>
+              </select>
+            </label>
+            <label>
+              Veteran status
+              <select name="eeo_veteran">
+                <option value="">Select one</option>
+                <option>I am a protected veteran</option>
+                <option>I am not a protected veteran</option>
+                <option>I don't wish to answer</option>
+              </select>
+            </label>
+            <label>
+              Disability status
+              <select name="eeo_disability">
+                <option value="">Select one</option>
+                <option>Yes, I have a disability</option>
+                <option>No, I do not have a disability</option>
+                <option>I don't wish to answer</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section>
+          <h2>Skipped fields</h2>
+          <div class="grid">
+            <label>Resume upload <input type="file" name="resume" /></label>
+            <label>Cover letter upload <input type="file" name="cover_letter_file" /></label>
+          </div>
+          <label>
+            Why are you interested in this company?
+            <textarea name="why_company"></textarea>
+          </label>
+        </section>
+
+        <div class="actions">
+          <button type="button">Save draft</button>
+          <button type="submit">Submit application</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>

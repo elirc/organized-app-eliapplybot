@@ -1,0 +1,165 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f8fafc;
+  color: #172033;
+  font: 14px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.options-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 14px;
+  padding: 18px;
+}
+
+.options-body {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 14px;
+  min-height: 0;
+}
+
+.version-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+}
+
+.version-item {
+  display: grid;
+  gap: 2px;
+  text-align: left;
+  padding: 8px 10px;
+}
+
+.version-item.selected {
+  border-color: #244f8f;
+  background: #eef4fd;
+}
+
+.version-name {
+  font-weight: 700;
+}
+
+.version-meta {
+  font-size: 12px;
+  font-weight: 500;
+  color: #526071;
+}
+
+.editor-pane {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 10px;
+  min-height: 0;
+}
+
+.editor-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.editor-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.editor-pane textarea {
+  min-height: 420px;
+}
+
+button.danger {
+  color: #9c2a2a;
+  border-color: #d79a9a;
+}
+
+button.danger:hover:not(:disabled) {
+  background: #fff3f3;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.options-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.options-header h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.options-header p {
+  margin: 4px 0 0;
+  color: #526071;
+}
+
+.options-actions {
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  appearance: none;
+  min-height: 36px;
+  border: 1px solid #9aa8bb;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #172033;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+  padding: 8px 12px;
+}
+
+button:hover {
+  background: #eef2f7;
+}
+
+button.secondary {
+  color: #526071;
+}
+
+textarea {
+  width: 100%;
+  min-height: 0;
+  resize: none;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #172033;
+  padding: 12px;
+  font: 13px/1.45 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+}
+
+.options-status {
+  border: 1px solid #d8dee8;
+  border-radius: 6px;
+  background: #ffffff;
+  padding: 10px;
+}
+
+.options-status-saved {
+  border-color: #8fb89b;
+  background: #f0f8f2;
+}
+
+.options-status-error {
+  border-color: #d79a9a;
+  background: #fff3f3;
+}
