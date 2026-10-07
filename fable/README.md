@@ -6,6 +6,8 @@ This folder documents a full read-through of the extension source: architecture 
 concrete findings (bugs and risks, each with file/line references), and suggested
 improvements ordered by value.
 
+> **Status note (2026-10-06):** This is a frozen review of `v0.1.0`. This repository is a snapshot of the code at `v0.2.0` (`manifest.json`, `package.json`). The maintained repository is [elirc/eliapplybot-extension](https://github.com/elirc/eliapplybot-extension), which has since moved to v0.3.0. Against this v0.2.0 snapshot, findings #1-#3 and #5-#8 are fixed, #4 is mostly fixed, #9 is still open, and #10 is addressed by a 61-test suite. In `03-improvements.md`, items 1-4 and 6 are done, 10 is partly done, and 5, 7, 8 and 9 are still open. Each finding and improvement now carries a dated status line with v0.2.0 file:line evidence. The line numbers in the review body still refer to v0.1.0.
+
 ## Contents
 
 | File | What's in it |

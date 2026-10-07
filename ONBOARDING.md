@@ -1,3 +1,5 @@
+> **Snapshot note (2026-10-06):** This repository is a snapshot of `eli apply mate` at v0.2.0. The maintained repository is [elirc/eliapplybot-extension](https://github.com/elirc/eliapplybot-extension), which has moved to v0.3.0 and has a rewritten onboarding guide. Everything below was checked against the v0.2.0 code in this snapshot.
+
 # Developer Onboarding
 
 This document is for two developers joining `eli apply mate`:
@@ -41,17 +43,19 @@ These rules are product requirements, not preferences.
 Read these files first:
 
 - `README.md`: setup, usage, and safety framing.
-- `manifest.json`: extension permissions, content script injection, popup, and options page.
+- `manifest.json`: extension permissions (`activeTab`, `storage`, `scripting`), popup, and options page. There is no `content_scripts` entry. The popup injects `contentScript.js` on demand (`src/popup/Popup.tsx:114-129`).
 - `src/content/contentScript.ts`: message handling, scan/fill flow, rollback, sidebar rendering.
 - `src/content/scanner.ts`: DOM field detection and stable field ids.
 - `src/content/filler.ts`: applying values and rollback snapshots.
 - `src/content/domLabels.ts`: label, nearby text, and section text extraction.
 - `src/shared/fieldMatchers.ts`: deterministic classification and value mapping.
 - `src/shared/types.ts`: profile, detected field, mapping, and result types.
-- `src/shared/profileSchema.ts`: runtime profile validation.
+- `src/shared/profileSchema.ts`: runtime profile validation with per-path error messages.
+- `src/shared/storage.ts`: named profile versions in `chrome.storage.local`, including the legacy single-profile migration.
+- `src/options/Options.tsx`: the profile-version editor (save, activate, duplicate, rename, import, export).
 - `src/sidebar/renderSidebar.ts`: injected review UI.
 - `src/sites/*.ts`: site adapter stubs.
-- `src/shared/fieldMatchers.test.ts`: current test style and baseline coverage.
+- `src/shared/fieldMatchers.test.ts`: current test style and baseline coverage. The other five test files are `profileSchema.test.ts`, `storage.test.ts`, `filler.test.ts`, `scanner.test.ts`, and the jsdom integration run in `src/content/autofill.integration.test.ts` (61 tests in total).
 - `test-pages/fake-application.html`: local manual test target.
 
 ## Local Setup
@@ -110,6 +114,8 @@ Before approving a change:
 The following five user stories are assigned as the first onboarding project set. They are ordered roughly from lower risk to higher risk.
 
 ## Story 1: Strengthen Candidate Profile Validation
+
+> **Status (v0.2.0): Done.** `validateProfileDetailed` (`src/shared/profileSchema.ts:8-130`) covers every step in the plan below, including `futureAnswerBank` (`:109-127`) and month/year ranges (`:135-152`). The tests are in `profileSchema.test.ts`. The "Current Problem" section describes v0.1.0. Start/end date order is still not checked, which makes a good small follow-up.
 
 Owner: Junior developer  
 Reviewer: Mid-level developer  
@@ -190,6 +196,8 @@ As a user editing my local profile JSON, I want invalid or incomplete profile da
 
 ## Story 2: Make Field Filling More Reliable For React-Controlled Inputs
 
+> **Status (v0.2.0): Mostly done.** `setNativeValue` uses the prototype setter with a fallback (`src/content/filler.ts:99-114`), and rollback uses the same path (`filler.ts:52`). Step 5 is still open: the fake page has no controlled-state fixture, and no test simulates a React-controlled input.
+
 Owner: Mid-level developer  
 Reviewer: Junior developer for tests and fake page coverage  
 Risk: Medium  
@@ -242,6 +250,8 @@ As a user applying through modern ATS pages, I want text inputs and textareas to
 5. Click clear values and confirm values and state display revert.
 
 ## Story 3: Improve Radio And Checkbox Group Detection
+
+> **Status (v0.2.0): Partly done.** `getGroupKey` now adds a structural key for unnamed inputs outside a fieldset (`src/content/scanner.ts:83-107`), pinned by "keeps unnamed radio groups in separate containers apart" in `scanner.test.ts`. Unnamed inputs inside one fieldset still share a key (`scanner.ts:88`), there is no standalone-checkbox rule, and the extra fake-page fixtures from step 1 have not been added.
 
 Owner: Junior developer  
 Reviewer: Mid-level developer  
@@ -299,6 +309,8 @@ As a user filling applications with yes/no questions, EEO questions, and consent
 
 ## Story 4: Add Real Adapter Normalization For Greenhouse And Lever
 
+> **Status (v0.2.0): Open.** `src/sites/greenhouse.ts` and `lever.ts` still only match hostnames. The hook is ready: `scanPage` calls `adapter.normalizeField` when it exists (`src/content/scanner.ts:117-119`).
+
 Owner: Mid-level developer  
 Reviewer: Junior developer for fixtures and matcher tests  
 Risk: Medium to high  
@@ -354,6 +366,8 @@ The Greenhouse and Lever adapters only match hostnames. They do not normalize co
 4. Repeat with a Lever-like fixture.
 
 ## Story 5: Persist Last Fill Result And Add Exportable Review Report
+
+> **Status (v0.2.0): Open.** `lastResult` is still an in-memory variable in the content script (`src/content/contentScript.ts:25`), and `storage.ts` has no last-result key. Two pieces changed since this story was written. The debug copy now redacts `valueBefore` (`src/sidebar/renderSidebar.ts:61-70`), and `ShowLastResult` with no result returns "Nothing to show yet" (`contentScript.ts:48-51`). The popup still does not expose it.
 
 Owner: Junior developer for UI and storage helpers  
 Reviewer: Mid-level developer for data shape and privacy  

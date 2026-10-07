@@ -1,5 +1,13 @@
 # Codebase Overview
 
+> **Status note (2026-10-06):** This describes v0.1.0. This snapshot is v0.2.0, and four things have changed:
+> - The content script is no longer declared for `<all_urls>`. The popup pings the tab and injects `contentScript.js` on demand (`src/popup/Popup.tsx:114-129`), and a window flag stops a second injection from registering twice (`src/content/contentScript.ts:11-21`).
+> - Profiles are stored as named versions that can be switched, duplicated, imported and exported (`src/shared/storage.ts`, `src/options/Options.tsx`). The popup has a version picker (`src/popup/Popup.tsx:65-79`).
+> - Profile validation is deep and returns per-path errors (`validateProfileDetailed`, `src/shared/profileSchema.ts:8-130`).
+> - There are 6 test files with 61 tests, including a jsdom run against `test-pages/fake-application.html`.
+>
+> The scanner still writes `data-eli-apply-mate-field-id` attributes to the page (`src/content/scanner.ts:4`, `:21`, `:47`), and the site adapters are still name-only stubs.
+
 `eli apply mate` is a Manifest V3 Chrome extension that autofills high-confidence,
 standardized job-application fields after an explicit click. No network calls, no
 submission, profile data lives only in `chrome.storage.local`.
